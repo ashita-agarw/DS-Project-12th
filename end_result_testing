@@ -1,0 +1,62 @@
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+
+import matplotlib.pyplot as plt
+
+df=pd.read_csv('/Users/ashitaagarwal/Desktop/DS Internship/DateTempAll.csv')
+df.columns=["Date","Temperature"]
+df['Date']=pd.to_datetime(df['Date'])
+df.set_index('Date',inplace=True)
+
+gen_info=df.describe()
+
+df.plot()
+#plt.show()
+
+from statsmodels.tsa.stattools import adfuller
+
+test_result=adfuller(df['Temperature'])
+
+'''Ho: It is non stationary
+H1: It is stationary'''
+
+def adfuller_test(sales):
+    result=adfuller(sales)
+    labels = ['ADF Test Statistic','p-value','#Lags Used','Number of Observations Used']
+    for value,label in zip(result,labels):
+        print(label+' : '+str(value) )
+    if result[1] <= 0.05:
+        print("strong evidence against the null hypothesis(Ho), reject the null hypothesis. Data has no unit root and is stationary")
+    else:
+        print("weak evidence against null hypothesis, time series has a unit root, indicating it is non-stationary ")
+
+#adfuller_test(df['Temperature'])
+
+df['Temperature First Difference'] = df['Temperature'] - df['Temperature'].shift(1)
+
+df['Seasonal First Difference']=df['Temperature']-df['Temperature'].shift(362)
+
+adfuller_test(df['Seasonal First Difference'].dropna())
+df['Seasonal First Difference'].plot()
+plt.show()
+
+'''
+from statsmodels.graphics.tsaplots import plot_acf,plot_pacf
+import statsmodels.api as sm
+
+fig = plt.figure(figsize=(12,8))
+ax1 = fig.add_subplot(211)
+fig = sm.graphics.tsa.plot_acf(df['Seasonal First Difference'].dropna(),lags=40,ax=ax1)
+ax2 = fig.add_subplot(212)
+fig = sm.graphics.tsa.plot_pacf(df['Seasonal First Difference'].dropna(),lags=40,ax=ax2)
+plt.show()'''
+
+#p=2, d=1 (as we did only 1 seasonal differencing) , q=1/2
+
+from statsmodels.tsa.arima_model import ARIMA
+model=sm.tsa.statespace.SARIMAX(df['Temperature'],order=(2, 1, 1),seasonal_order=(2,1,1,362))
+results=model.fit()
+df['forecast']=results.predict(start=512,end=753,dynamic=True)
+df[['Temperature','forecast']].plot(figsize=(12,8))
+plt.show()
