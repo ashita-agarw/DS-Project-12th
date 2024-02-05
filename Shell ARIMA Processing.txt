@@ -1,0 +1,99 @@
+Python 3.8.2 (v3.8.2:7b3ab5921f, Feb 24 2020, 17:52:18) 
+[Clang 6.0 (clang-600.0.57)] on darwin
+Type "help", "copyright", "credits" or "license()" for more information.
+
+====== RESTART: /Users/ashitaagarwal/Desktop/DS Internship/15th October.py =====
+ARIMA PROCESSING
+Performing stepwise search to minimize aic
+ ARIMA(1,1,1)(0,1,0)[12]             : AIC=inf, Time=0.37 sec
+ ARIMA(0,1,0)(0,1,0)[12]             : AIC=4669.597, Time=0.05 sec
+ ARIMA(1,1,0)(1,1,0)[12]             : AIC=4480.516, Time=0.23 sec
+ ARIMA(0,1,1)(0,1,1)[12]             : AIC=inf, Time=0.97 sec
+ ARIMA(1,1,0)(0,1,0)[12]             : AIC=4669.318, Time=0.07 sec
+ ARIMA(1,1,0)(2,1,0)[12]             : AIC=4404.677, Time=0.48 sec
+ ARIMA(1,1,0)(3,1,0)[12]             : AIC=4365.308, Time=1.01 sec
+ ARIMA(1,1,0)(4,1,0)[12]             : AIC=4354.671, Time=2.53 sec
+ ARIMA(1,1,0)(5,1,0)[12]             : AIC=4331.175, Time=4.32 sec
+ ARIMA(1,1,0)(5,1,1)[12]             : AIC=inf, Time=33.94 sec
+ ARIMA(1,1,0)(4,1,1)[12]             : AIC=inf, Time=38.32 sec
+ ARIMA(0,1,0)(5,1,0)[12]             : AIC=4333.660, Time=4.73 sec
+ ARIMA(2,1,0)(5,1,0)[12]             : AIC=4300.934, Time=7.08 sec
+ ARIMA(2,1,0)(4,1,0)[12]             : AIC=4322.457, Time=4.27 sec
+ ARIMA(2,1,0)(5,1,1)[12]             : AIC=inf, Time=42.18 sec
+ ARIMA(2,1,0)(4,1,1)[12]             : AIC=inf, Time=32.52 sec
+ ARIMA(3,1,0)(5,1,0)[12]             : AIC=4289.451, Time=7.99 sec
+ ARIMA(3,1,0)(4,1,0)[12]             : AIC=4310.972, Time=4.83 sec
+ ARIMA(3,1,0)(5,1,1)[12]             : AIC=inf, Time=44.67 sec
+ ARIMA(3,1,0)(4,1,1)[12]             : AIC=inf, Time=29.11 sec
+ ARIMA(4,1,0)(5,1,0)[12]             : AIC=4260.821, Time=9.23 sec
+ ARIMA(4,1,0)(4,1,0)[12]             : AIC=4281.483, Time=12.32 sec
+ ARIMA(4,1,0)(5,1,1)[12]             : AIC=inf, Time=79.12 sec
+ ARIMA(4,1,0)(4,1,1)[12]             : AIC=inf, Time=38.68 sec
+ ARIMA(5,1,0)(5,1,0)[12]             : AIC=4258.527, Time=8.09 sec
+ ARIMA(5,1,0)(4,1,0)[12]             : AIC=4279.420, Time=4.43 sec
+ ARIMA(5,1,0)(5,1,1)[12]             : AIC=inf, Time=43.41 sec
+ ARIMA(5,1,0)(4,1,1)[12]             : AIC=inf, Time=590.18 sec
+ ARIMA(5,1,1)(5,1,0)[12]             : AIC=4215.187, Time=24.25 sec
+ ARIMA(5,1,1)(4,1,0)[12]             : AIC=4232.832, Time=10.80 sec
+ ARIMA(5,1,1)(5,1,1)[12]             : AIC=inf, Time=84.89 sec
+ ARIMA(5,1,1)(4,1,1)[12]             : AIC=inf, Time=41.51 sec
+ ARIMA(4,1,1)(5,1,0)[12]             : AIC=4214.790, Time=13.33 sec
+ ARIMA(4,1,1)(4,1,0)[12]             : AIC=4232.660, Time=7.28 sec
+ ARIMA(4,1,1)(5,1,1)[12]             : AIC=inf, Time=100.77 sec
+ ARIMA(4,1,1)(4,1,1)[12]             : AIC=inf, Time=42.00 sec
+ ARIMA(3,1,1)(5,1,0)[12]             : AIC=4214.753, Time=12.85 sec
+ ARIMA(3,1,1)(4,1,0)[12]             : AIC=4232.617, Time=9.55 sec
+ ARIMA(3,1,1)(5,1,1)[12]             : AIC=inf, Time=72.41 sec
+ ARIMA(3,1,1)(4,1,1)[12]             : AIC=inf, Time=42.14 sec
+ ARIMA(2,1,1)(5,1,0)[12]             : AIC=4212.785, Time=11.60 sec
+ ARIMA(2,1,1)(4,1,0)[12]             : AIC=4230.620, Time=7.35 sec
+ ARIMA(2,1,1)(5,1,1)[12]             : AIC=inf, Time=71.25 sec
+ ARIMA(2,1,1)(4,1,1)[12]             : AIC=inf, Time=47.62 sec
+ ARIMA(1,1,1)(5,1,0)[12]             : AIC=4226.230, Time=16.68 sec
+ ARIMA(2,1,2)(5,1,0)[12]             : AIC=4214.695, Time=30.43 sec
+ ARIMA(1,1,2)(5,1,0)[12]             : AIC=4213.200, Time=14.87 sec
+ ARIMA(3,1,2)(5,1,0)[12]             : AIC=4206.277, Time=38.38 sec
+ ARIMA(3,1,2)(4,1,0)[12]             : AIC=4222.028, Time=13.47 sec
+ ARIMA(3,1,2)(5,1,1)[12]             : AIC=inf, Time=118.58 sec
+ ARIMA(3,1,2)(4,1,1)[12]             : AIC=inf, Time=48.71 sec
+ ARIMA(4,1,2)(5,1,0)[12]             : AIC=4206.602, Time=33.77 sec
+ ARIMA(3,1,3)(5,1,0)[12]             : AIC=4206.666, Time=29.63 sec
+ ARIMA(2,1,3)(5,1,0)[12]             : AIC=4207.478, Time=40.10 sec
+ ARIMA(4,1,3)(5,1,0)[12]             : AIC=4208.580, Time=36.04 sec
+ ARIMA(3,1,2)(5,1,0)[12] intercept   : AIC=4208.165, Time=70.62 sec
+
+Best model:  ARIMA(3,1,2)(5,1,0)[12]          
+Total fit time: 2139.007 seconds
+                                      SARIMAX Results                                      
+===========================================================================================
+Dep. Variable:                                   y   No. Observations:                  753
+Model:             SARIMAX(3, 1, 2)x(5, 1, [], 12)   Log Likelihood               -2092.139
+Date:                             Fri, 15 Oct 2021   AIC                           4206.277
+Time:                                     18:26:29   BIC                           4256.950
+Sample:                                          0   HQIC                          4225.815
+                                             - 753                                         
+Covariance Type:                               opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1         -0.2508      0.051     -4.900      0.000      -0.351      -0.151
+ar.L2          0.4717      0.052      9.021      0.000       0.369       0.574
+ar.L3         -0.1027      0.042     -2.439      0.015      -0.185      -0.020
+ma.L1          0.0360      0.035      1.039      0.299      -0.032       0.104
+ma.L2         -0.8824      0.033    -27.021      0.000      -0.946      -0.818
+ar.S.L12      -0.7511      0.038    -19.775      0.000      -0.826      -0.677
+ar.S.L24      -0.5887      0.049    -11.930      0.000      -0.685      -0.492
+ar.S.L36      -0.4203      0.053     -7.874      0.000      -0.525      -0.316
+ar.S.L48      -0.2507      0.053     -4.752      0.000      -0.354      -0.147
+ar.S.L60      -0.1640      0.042     -3.914      0.000      -0.246      -0.082
+sigma2        16.4349      0.665     24.718      0.000      15.132      17.738
+===================================================================================
+Ljung-Box (L1) (Q):                   0.01   Jarque-Bera (JB):               192.78
+Prob(Q):                              0.93   Prob(JB):                         0.00
+Heteroskedasticity (H):               1.06   Skew:                            -0.80
+Prob(H) (two-sided):                  0.67   Kurtosis:                         4.92
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+>>> 
