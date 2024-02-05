@@ -1,0 +1,143 @@
+#imports
+import pandas as pd
+from matplotlib import pyplot as plt
+import numpy as np
+import csv
+from statsmodels.tsa.stattools import adfuller
+from statsmodels.tsa.seasonal import seasonal_decompose
+import matplotlib.patches as mpatches
+import math
+from sklearn.metrics import mean_squared_error
+'''
+#dataset
+dataset=pd.read_csv('/Users/ashitaagarwal/Desktop/DateTempAll.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+print(dataset)
+dataset.plot()
+plt.title('Original Temperature Data')
+plt.xlabel('Date') 
+plt.ylabel('Temperature') 
+plt.show()
+print('yes')
+'''
+DateTempAll=pd.read_csv('/Users/ashitaagarwal/Desktop/DateTempAll.csv')
+print('read')
+
+#Split data into train and test
+size = int(len(DateTempAll))-253
+X_train, X_test = DateTempAll[0:size], DateTempAll[size:len(DateTempAll)]
+print(X_train)
+print(X_test)
+
+print('FITTING MODEL')
+# Fit a SARIMAX(3, 1, 2)x(5, 1, 1, 12) on the training set 
+from statsmodels.tsa.statespace.sarimax import SARIMAX 
+  
+model = SARIMAX(DateTempAll['Temperature'],  
+                order = (3, 1, 2),  
+                seasonal_order =(5, 1, 1, 12)) 
+
+result = model.fit() 
+result.summary()
+print("end")
+
+#train
+start_index = 0
+end_index = len(X_train)
+train_prediction = result.predict(start_index, end_index)
+real_train=X_train
+
+#retriving the data sets with dates
+train_data=pd.read_csv('/Users/ashitaagarwal/Desktop/trained.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+Real_Train=pd.read_csv('/Users/ashitaagarwal/Desktop/X_Train.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+print("----------------------------------TRAIN----------------------------------------")
+print(train_data)
+
+#plot_train
+Real_Train.plot(label='Recorded Data', color="red")
+train_data.plot(label='Predicted Based on Model', color="blue")
+plt.title('Trained Data')
+plt.xlabel('Date') 
+plt.ylabel('Temperature')
+red_patch = mpatches.Patch(color='red', label='Recorded Data')
+blue_patch= mpatches.Patch(color='blue', label='Predicted Based on Model')
+plt.legend(handles=[red_patch,blue_patch])
+plt.show()
+
+#test
+
+start_indexNew = len(X_train)
+end_indexNew = len(DateTempAll)
+test_prediction = result.predict(start_indexNew, end_indexNew).rename('Test_Predicted')
+real_test=X_test
+#retriving the data sets with dates
+test_data=pd.read_csv('/Users/ashitaagarwal/Desktop/tested.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+Real_Test=pd.read_csv('/Users/ashitaagarwal/Desktop/X_Test.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+
+print("----------------------------------TEST----------------------------------------")
+print(test_data)
+
+#plot_test
+Real_Test.plot(label='Recorded Data', color="red")
+test_data.plot(label='Predicted Based on Model', color="blue")
+plt.title('Tested Data')
+plt.xlabel('Date') 
+plt.ylabel('Temperature')
+red_patch = mpatches.Patch(color='red', label='Recorded Data')
+blue_patch= mpatches.Patch(color='blue', label='Predicted Based on Model')
+plt.legend(handles=[red_patch,blue_patch])
+plt.show()
+
+
+#real prediction ahead 7 days
+prediction_indexStart=len(DateTempAll)+1
+prediction_indexEnd=len(DateTempAll)+8
+prediction = result.predict(prediction_indexStart, prediction_indexEnd).rename('Predicted')
+
+#retriving the data sets with dates
+predict_data=pd.read_csv('/Users/ashitaagarwal/Desktop/predicted.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+forecastMadeByUni=pd.read_csv('/Users/ashitaagarwal/Desktop/Forecasted.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+
+print("----------------------------------PREDICT----------------------------------------")
+print(predict_data)
+
+#plot_predict
+predict_data.plot(label='Predicted Data by model', color="blue")
+forecastMadeByUni.plot(label='Recorded Data', color="red")
+plt.title('7 day ahead temperature')
+plt.xlabel('Date') 
+plt.ylabel('Temperature')
+red_patch = mpatches.Patch(color='red', label='Recorded Data')
+blue_patch= mpatches.Patch(color='blue', label='Predicted Based on Model')
+plt.legend(handles=[red_patch,blue_patch])
+plt.show()
+
+
+#Plotting the graph for all predicted temps against real data
+AllRecorded=pd.read_csv('/Users/ashitaagarwal/Desktop/DateTempAll.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+AllPredicted=pd.read_csv('/Users/ashitaagarwal/Desktop/train and test combo.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+
+AllRecorded.plot(label='Recorded Data', color="red")
+AllPredicted.plot(label='Predicted Data by model', color="blue")
+
+plt.title('753 recording against predictions')
+plt.xlabel('Date') 
+plt.ylabel('Temperature')
+red_patch = mpatches.Patch(color='red', label='Recorded Data')
+blue_patch= mpatches.Patch(color='blue', label='Predicted Based on Model')
+plt.legend(handles=[red_patch,blue_patch])
+plt.show()'''
+
+'''
+train_data=pd.read_csv('/Users/ashitaagarwal/Desktop/trained.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+Real_Train=pd.read_csv('/Users/ashitaagarwal/Desktop/X_Train.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+
+test_data=pd.read_csv('/Users/ashitaagarwal/Desktop/tested.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+Real_Test=pd.read_csv('/Users/ashitaagarwal/Desktop/X_Test.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+
+
+trainScore = math.sqrt(mean_squared_error(Real_Train, train_data))
+print('Train Score: %.2f RMSE' % (trainScore))
+testScore = math.sqrt(mean_squared_error(Real_Test, test_data))
+print('Test Score: %.2f RMSE' % (testScore))
+
+'''
